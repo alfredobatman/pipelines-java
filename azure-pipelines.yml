@@ -5,6 +5,8 @@
 
 trigger:
 - master
+variables:
+  Example: 'myValue'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -13,10 +15,14 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
+- script: echo The value passed in is $(Example)
+
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- script: echo This is pipeline $(System.DefinitionId)
 
 - task: Maven@3
   inputs:
